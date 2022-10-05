@@ -23,19 +23,19 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dataSet["Mon_" + i.ToString()] <= 10 & statusStart == false & i != dataSet.Count)
+        if (dataSet["Mon_" + i.ToString()] <= 300 & statusStart == false & i != dataSet.Count)
         {
             StartCoroutine(PlaySelectAudioGood());
             Debug.Log(dataSet["Mon_" + i.ToString()]);
         }
 
-        if (dataSet["Mon_" + i.ToString()] > 10 & dataSet["Mon_" + i.ToString()] < 100 & statusStart == false & i != dataSet.Count)
+        if (dataSet["Mon_" + i.ToString()] > 300 & dataSet["Mon_" + i.ToString()] < 1000 & statusStart == false & i != dataSet.Count)
         {
             StartCoroutine(PlaySelectAudioNormal());
             Debug.Log(dataSet["Mon_" + i.ToString()]);
         }
 
-        if (dataSet["Mon_" + i.ToString()] >= 100 & statusStart == false & i != dataSet.Count)
+        if (dataSet["Mon_" + i.ToString()] >= 1000 & statusStart == false & i != dataSet.Count) //изменила значения относительно параметра loss
         {
             StartCoroutine(PlaySelectAudioBad());
             Debug.Log(dataSet["Mon_" + i.ToString()]);
@@ -52,7 +52,7 @@ public class NewBehaviourScript : MonoBehaviour
         {
             var parseJson = JSON.Parse(itemRawJson.ToString());
             var selectRow = parseJson[0].AsStringList;
-            dataSet.Add(("Mon_" + selectRow[0]), float.Parse(selectRow[2]));
+            dataSet.Add(("Mon_" + selectRow[0]), float.Parse(selectRow[1])); //изменила количество столбцов
         }
     }
 
